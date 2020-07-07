@@ -9,27 +9,22 @@
 #define LOG_LEVEL_INFO 3
 #define LOG_LEVEL_DBG 4
 
-
 enum MM {Manually_Lot, Automatically_Lot};
 
-extern MM     TypeOfLotSize     = Manually_Lot;//Type Of Lot Size
-extern double RiskFactor        = 1.0;//Risk Factro For Auto Lot
-extern double ManualLotSize     = 0.01;//Manual Lot Size
-extern double StopLoss = 30.00;
-extern double TakeProfit = 40.00;
-
-extern bool   BreakEvenRun      = false;//Use Break Even
-extern double BreakEvenAfter    = 10.0;//Profit To Activate Break Even (Plus Stop Loss)
-extern double TrailingProfit = false;
-extern bool      UseProfitToClose       = true;
-extern double    ProfitToClose          = 100;
-
-extern bool   SaverRun      = false;//Use Saver
-extern double OrderDistance     = 10.0;//Distance For Pending Orders
-extern double Risk_Multiplier=1;       // Risk Multiplier
-
-extern int Magic = 123; // Magic Number
-
+extern MM     TypeOfLotSize     = Manually_Lot;     // Type Of Lot Size
+extern double RiskFactor        = 1.0;              // Risk Factro For Auto Lot
+extern double ManualLotSize     = 0.01;             // Manual Lot Size
+extern double StopLoss = 30.00;                     // StopLoss
+extern double TakeProfit = 40.00;                   // TakeProfit
+extern bool   BreakEvenRun      = false;            // Use Break Even
+extern double BreakEvenAfter    = 10.0;             // Profit To Activate Break Even (Plus Stop Loss)
+extern double TrailingProfit = false;               // TrailingStop for Profit
+extern bool      UseProfitToClose       = true;     // ¿Use Profit for close?
+extern double    ProfitToClose          = 100;      // Profit for close order
+extern bool   SaverRun      = false;                // Use Saver
+extern double OrderDistance     = 10.0;             // Distance For Pending Orders
+extern double Risk_Multiplier=1;                    // Risk Multiplier
+extern int Magic = 123456;                          // Magic Number (UNIQUE)
 
 int pro=0;
 datetime t=0;
@@ -66,6 +61,8 @@ int OnInit()
 //+------------------------------------------------------------------+
 //|                                                                  |
 //+------------------------------------------------------------------+
+}
+
 bool CheckMoneyForTrade(string symbol, double lot, int type)
   {
    double free_margin = AccountFreeMargin();
@@ -148,7 +145,7 @@ double LotSize()
          }
       }
     return (LotSize);
-}}   
+}
 
 double NormalizeLot(double LotsSize)
   {
@@ -198,6 +195,4 @@ int start()
          return(0);
         }
      }
-  } 
-
-
+  }
